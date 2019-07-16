@@ -20,9 +20,9 @@ async function isHoliday (date = new Date()) {
 
 /**
  * github trending list
- * @param {*} date
+ * @param {*} data
  */
-async function githubList (date = new Date()) {
+async function githubList (data) {
   try {
     const result = await post(
       'https://extension-ms.juejin.im/resources/github',
@@ -32,6 +32,7 @@ async function githubList (date = new Date()) {
         limit: '30',
         offset: 0,
         period: 'day',
+        ...data,
       }
     )
 
