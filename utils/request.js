@@ -1,5 +1,10 @@
 const rp = require('request-promise')
 
+/**
+ * request-promise post
+ * @param {*} url
+ * @param {*} body
+ */
 async function post (url, body) {
   try {
     const result = await rp({
@@ -15,6 +20,11 @@ async function post (url, body) {
   }
 }
 
+/**
+ * request-promise get
+ * @param {*} url
+ * @param {*} body
+ */
 async function get (url, body) {
   try {
     const result = await rp({

@@ -14,7 +14,10 @@ schedule.scheduleJob('0 0 9 * * *', () => {
   console.log('执行任务3')
 })
 
-// 当当前时间的秒值为10时执行任务，如：2018-7-8 13:25:10
-// schedule.scheduleJob('50 * * * * *', () => {
-//   console.log(new Date())
-// })
+const scheduleHandle = (date, cb = () => {}) => {
+  schedule.scheduleJob(date, cb)
+}
+
+module.exports = {
+  scheduleHandle,
+}
