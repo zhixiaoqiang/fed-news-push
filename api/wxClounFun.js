@@ -72,6 +72,21 @@ const insertFedNews = async (list, site) => {
   }
 }
 
+const getFedNews = async (offset = 0, pageSize = 20) => {
+  try {
+    const url = await wxCloudUrl('actical')
+    await post(url, {
+      $url: 'list',
+      data: {
+        offset,
+        pageSize,
+      },
+    })
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
 ;(async () => {
   // await text({
   //   text: '测试封装函数',
@@ -81,4 +96,5 @@ const insertFedNews = async (list, site) => {
 module.exports = {
   getAccessToken,
   insertFedNews,
+  getFedNews,
 }
