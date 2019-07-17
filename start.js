@@ -32,4 +32,18 @@ const launch = async () => {
   })
 }
 
-launch()
+// launch()
+;(async () => {
+  // 每天六点开始爬取数据
+  try {
+    const feedCardList = await Api.githubList()
+    const res = await wxClounFun.insertFedNews(
+      feedCardList.data || [],
+      'github'
+    )
+    console.warn(res)
+  } catch (error) {
+    console.warn(error)
+  }
+  // console.warn('爬取并插入成功')
+})()

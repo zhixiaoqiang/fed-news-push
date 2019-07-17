@@ -42,7 +42,7 @@ const getAccessToken = async () => {
     await fse.outputJson(CONFIG_URL, config, {
       spaces: 2,
     })
-    console.warn(res.access_token)
+
     return res.access_token
   } catch (error) {
     console.warn(error)
@@ -53,7 +53,7 @@ const getAccessToken = async () => {
 const wxCloudUrl = async (name) => {
   const access_token = await getAccessToken()
   if (access_token) {
-    return `https://api.weixin.qq.com/tcb/invokecloudfunction?${formatQuery(data)}access_token=${access_token}&env=nazi-cloud-430a12&name=${name}`
+    return `https://api.weixin.qq.com/tcb/invokecloudfunction?access_token=${access_token}&env=nazi-cloud-430a12&name=${name}`
   }
 }
 

@@ -42,14 +42,20 @@ async function githubList (data) {
         forkCount,
         description,
         detailPageUrl,
+        username,
+        lang,
+        reponame,
         owner: { url },
       } = item
       return {
-        title: description,
+        title: reponame,
+        description,
         messageURL: detailPageUrl,
         picURL: url,
         starCount,
         forkCount,
+        username,
+        lang,
       }
     })
 
