@@ -26,8 +26,14 @@ const launch = async () => {
     // console.warn('每天十点执行推送任务，当天为工作日时才能真正推送')
     const isHoliday = await Api.isHoliday()
     if (!isHoliday) {
-      const feedCardList = await wxClounFun.getFedNews()
-      await dingTalk.feedCard(feedCardList)
+      const result = await wxClounFun.getFedNews({
+        offset: 0,
+        pageSize: 4,
+      })
+
+      await dingTalk.markdown(result)
+
+      // await dingTalk.feedCard(result)
     }
   })
 }
@@ -57,5 +63,4 @@ const launch = async () => {
   } catch (error) {
     console.warn(error)
   }
-  // console.warn('爬取并插入成功')
 })()
