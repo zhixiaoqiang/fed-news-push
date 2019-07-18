@@ -10,7 +10,12 @@ const formatQuery = (obj) => {
   return str.join('&')
 }
 
+const limitText = (text = '', limitCount = 120) => {
+  return text.length > limitCount ? `${text.slice(0, limitCount)}...` : text
+}
+
 module.exports = {
   schedule,
   formatQuery,
+  limitText,
 }

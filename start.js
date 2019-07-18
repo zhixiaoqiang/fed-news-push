@@ -36,12 +36,24 @@ const launch = async () => {
 ;(async () => {
   // 每天六点开始爬取数据
   try {
-    const feedCardList = await Api.githubList()
-    const res = await wxClounFun.insertFedNews(
-      feedCardList.data || [],
-      'github'
-    )
-    console.warn(res)
+    // const feedCardList = await Api.githubList()
+    // const res = await wxClounFun.insertFedNews(
+    //   feedCardList.data || [],
+    //   'github'
+    // )
+
+    const isHoliday = await Api.isHoliday()
+
+    if (!isHoliday) {
+      const result = await wxClounFun.getFedNews({
+        offset: 0,
+        pageSize: 4,
+      })
+
+      await dingTalk.markdown(result)
+
+      // await dingTalk.feedCard(result)
+    }
   } catch (error) {
     console.warn(error)
   }

@@ -82,6 +82,11 @@ async function actionCard (params) {
 /**
  * 钉钉feedCard推送
  * @param {*} params
+ *   [{
+        "title": "",
+        "messageURL": "",
+        "picURL": ""
+    }]
  */
 async function feedCard (params) {
   const body = {

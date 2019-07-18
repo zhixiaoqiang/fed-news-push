@@ -2,7 +2,7 @@ const fse = require('fs-extra')
 const { resolve } = require('path')
 const dayjs = require('dayjs')
 const { post, get } = require('../utils/request')
-const { formatQuery } = require('../utils')
+const { formatQuery, limitText } = require('../utils')
 // const { text } = require('./dingTalk')
 
 const CONFIG_URL = resolve(__dirname, '../config/index.json')
@@ -60,28 +60,64 @@ const wxCloudUrl = async (name) => {
 const insertFedNews = async (list, site) => {
   try {
     const url = await wxCloudUrl('actical')
-    await post(url, {
+    const res = await post(url, {
       $url: 'insertFedNews',
       data: {
         list,
         site,
       },
     })
+    return res
   } catch (error) {
     console.warn(error)
   }
 }
 
-const getFedNews = async (offset = 0, pageSize = 20) => {
+const getFedNews = async ({ type = 'markdown', offset = 0, pageSize = 20 }) => {
   try {
     const url = await wxCloudUrl('actical')
-    await post(url, {
+    const res = await post(url, {
       $url: 'list',
       data: {
         offset,
         pageSize,
       },
     })
+
+    const fedNews = JSON.parse(res.resp_data).data
+
+    if (type === 'markdown') {
+      const markdownText = fedNews
+        .map((item) => {
+          const {
+            title,
+            description,
+            messageURL,
+            username,
+            starCount,
+            forkCount,
+          } = item
+          return `### [${username}](https://github.com/${username})/[${title}](${messageURL})\n\n > ${limitText(description)} \n\n **star：${starCount} fork：${forkCount}**`
+        })
+        .join('\n\n')
+
+      return {
+        title: `${dayjs().format('YYYY-MM-DD')}前端资讯`,
+        text: `## ${dayjs().format('YYYY-MM-DD')}前端资讯 \n\n ${markdownText}`,
+      }
+    }
+
+    if (type === 'feedCard') {
+      const feedCardList = fedNews.map((item) => {
+        const { description, messageURL, picURL } = item
+        return {
+          title: description,
+          messageURL,
+          picURL,
+        }
+      })
+      return feedCardList
+    }
   } catch (error) {
     console.warn(error)
   }
