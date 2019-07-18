@@ -1,13 +1,13 @@
 {
   "dingTalkConf": {
-    "dingtalkUrl": "https://oapi.dingtalk.com/robot/send?access_token=17951140a6f17d2ee10b0af05affd49a587d060ea693029dd2bcaeb7d1ac53b8"
+    "dingtalkUrl": "**"
   },
   "wxConf": {
-    "grant_type": "client_credential",
-    "appid": "wxbb54d7013077bb1a",
-    "secret": "dc52304b09c3bff43c8075b628272e60",
-    "createTime": 1563416449024,
+    "grant_type": "**",
+    "appid": "**",
+    "secret": "**",
+    "createTime": 1563264994692,
     "expires": 7200,
-    "token": "23_G_WR78f-PYJ0F_f_pwasYdCXNlmH9jH7DXtoDimgSm1hJSRLVYyGX7p2rpgNEg1InQl6DaltDQgoWSWKvPoAe8Syd_kyQC6U269VyUV1_C9uHn8oILdCe1bJaLJXIy6sqvwT85d289yTk-L8YZScAEARSL"
+    "token": "**"
   }
 }
