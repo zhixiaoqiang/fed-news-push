@@ -9,5 +9,8 @@
     "createTime": 1563264994692,
     "expires": 7200,
     "token": "**"
+  },
+  "github": {
+    "auth": "**"
   }
 }
