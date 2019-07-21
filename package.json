@@ -6,6 +6,9 @@
   "repository": "git@github.com:zhixiaoqiang/fed-news-push.git",
   "author": "誌小強 <oncwnuP0rnVMPHgiWqo-39AWDsN0@git.weixin.qq.com>",
   "license": "MIT",
+  "scripts": {
+    "start": "node start.js"
+  },
   "dependencies": {
     "@octokit/rest": "^16.28.3",
     "async": "^3.1.0",

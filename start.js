@@ -2,6 +2,7 @@ const { schedule } = require('./utils')
 const Api = require('./api')
 const wxClounFun = require('./api/wxClounFun')
 const dingTalk = require('./api/dingTalk')
+const githubApi = require('./api/github')
 
 const launch = async () => {
   // const rule = new schedule.RecurrenceRule()
@@ -25,10 +26,25 @@ const launch = async () => {
   schedule.scheduleJob('0 0 10 * * *', async () => {
     // console.warn('每天十点执行推送任务，当天为工作日时才能真正推送')
     const isHoliday = await Api.isHoliday()
+
     if (!isHoliday) {
       const result = await wxClounFun.getFedNews({
         offset: 0,
-        pageSize: 4,
+        pageSize: 5,
+      })
+
+      await githubApi.createIssues({
+        owner: 'zhixiaoqiang',
+        repo: 'fed-news-push',
+        title: result.title,
+        body: result.text,
+        labels: ['日报'],
+      })
+
+      await wxClounFun.insertFedNewsDay({
+        type: 'markdown',
+        title: result.title,
+        text: result.text,
       })
 
       await dingTalk.markdown(result)
@@ -47,13 +63,28 @@ const launch = async () => {
     //   feedCardList.data || [],
     //   'github'
     // )
+    // console.warn(feedCardList)
 
     const isHoliday = await Api.isHoliday()
 
     if (!isHoliday) {
       const result = await wxClounFun.getFedNews({
         offset: 0,
-        pageSize: 4,
+        pageSize: 5,
+      })
+
+      await githubApi.createIssues({
+        owner: 'zhixiaoqiang',
+        repo: 'fed-news-push',
+        title: result.title,
+        body: result.text,
+        labels: ['日报'],
+      })
+
+      await wxClounFun.insertFedNewsDay({
+        type: 'markdown',
+        title: result.title,
+        text: result.text,
       })
 
       await dingTalk.markdown(result)
@@ -61,6 +92,6 @@ const launch = async () => {
       // await dingTalk.feedCard(result)
     }
   } catch (error) {
-    console.warn(error)
+    // console.warn(error)
   }
 })()

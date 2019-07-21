@@ -73,6 +73,45 @@ const insertFedNews = async (list, site) => {
   }
 }
 
+const insertFedNewsDay = async (data) => {
+  try {
+    const url = await wxCloudUrl('actical')
+
+    const { text, type, title } = data
+    const res = await post(url, {
+      $url: 'insertFedNewsDay',
+      data: {
+        createTime: dayjs().format('YYYY-MM-DD'),
+        text,
+        type,
+        title,
+      },
+    })
+    return res
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
+const insertFedNewsWeek = async (data) => {
+  try {
+    const url = await wxCloudUrl('actical')
+    const res = await post(url, {
+      $url: 'insertFedNewsWeek',
+      data: {
+        effectDate,
+        invaildDate,
+        text,
+        type,
+        title,
+      },
+    })
+    return res
+  } catch (error) {
+    console.warn(error)
+  }
+}
+
 const getFedNews = async ({ type = 'markdown', offset = 0, pageSize = 20 }) => {
   try {
     const url = await wxCloudUrl('actical')
@@ -102,8 +141,8 @@ const getFedNews = async ({ type = 'markdown', offset = 0, pageSize = 20 }) => {
         .join('\n\n')
 
       return {
-        title: `${dayjs().format('YYYY-MM-DD')}前端资讯`,
-        text: `## ${dayjs().format('YYYY-MM-DD')}前端资讯 \n\n ${markdownText}`,
+        title: `${dayjs().format('YYYY-MM-DD')}前端资讯日报`,
+        text: `## ${dayjs().format('YYYY-MM-DD')}前端资讯日报 \n\n ${markdownText}`,
       }
     }
 
@@ -132,5 +171,7 @@ const getFedNews = async ({ type = 'markdown', offset = 0, pageSize = 20 }) => {
 module.exports = {
   getAccessToken,
   insertFedNews,
+  insertFedNewsDay,
+  insertFedNewsWeek,
   getFedNews,
 }

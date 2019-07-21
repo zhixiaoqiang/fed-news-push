@@ -6,8 +6,11 @@
     "grant_type": "client_credential",
     "appid": "wxbb54d7013077bb1a",
     "secret": "dc52304b09c3bff43c8075b628272e60",
-    "createTime": 1563416449024,
+    "createTime": 1563689645202,
     "expires": 7200,
-    "token": "23_G_WR78f-PYJ0F_f_pwasYdCXNlmH9jH7DXtoDimgSm1hJSRLVYyGX7p2rpgNEg1InQl6DaltDQgoWSWKvPoAe8Syd_kyQC6U269VyUV1_C9uHn8oILdCe1bJaLJXIy6sqvwT85d289yTk-L8YZScAEARSL"
+    "token": "23_HmPKMb5ft2Ev-2U35U6Mg0OZOihwfEyRENA9rVHwJDCOVxqF2RX4GeAEsyYSaYKxuDZb7qhoMV9CHtM5u7l07PTM7TDoHu1QDGSvaNjSz4BBlHUaBJNJUTQDgcAHIpRM9vFdVwQnpWSqw9yGBWCdAIAPKQ"
+  },
+  "github": {
+    "auth": "50630137070a45c37fc1f0a1eb83560168ea775c"
   }
 }
