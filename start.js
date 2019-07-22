@@ -47,7 +47,7 @@ const launch = async () => {
         text: result.text,
       })
 
-      await dingTalk.markdown(result)
+      // await dingTalk.markdown(result)
 
       // await dingTalk.feedCard(result)
     }
@@ -58,39 +58,40 @@ const launch = async () => {
 ;(async () => {
   // 每天六点开始爬取数据
   try {
-    // const feedCardList = await Api.githubList()
-    // const res = await wxClounFun.insertFedNews(
-    //   feedCardList.data || [],
-    //   'github'
-    // )
+    const feedCardList = await Api.githubList()
+    const res = await wxClounFun.insertFedNews(
+      feedCardList.data || [],
+      'github'
+    )
     // console.warn(feedCardList)
 
-    const isHoliday = await Api.isHoliday()
+    // const isHoliday = await Api.isHoliday()
 
-    if (!isHoliday) {
-      const result = await wxClounFun.getFedNews({
-        offset: 0,
-        pageSize: 5,
-      })
+    // if (!isHoliday) {
+    //   const result = await wxClounFun.getFedNews({
+    //     offset: 0,
+    //     pageSize: 5,
+    //   })
 
-      await githubApi.createIssues({
-        owner: 'zhixiaoqiang',
-        repo: 'fed-news-push',
-        title: result.title,
-        body: result.text,
-        labels: ['日报'],
-      })
+    //   await githubApi.createIssues({
+    //     owner: 'zhixiaoqiang',
+    //     repo: 'fed-news-push',
+    //     title: result.title,
+    //     body: result.text,
+    //     labels: ['日报'],
+    //   })
 
-      await wxClounFun.insertFedNewsDay({
-        type: 'markdown',
-        title: result.title,
-        text: result.text,
-      })
+    //   await wxClounFun.insertFedNewsDay({
+    //     type: 'markdown',
+    //     title: result.title,
+    //     text: result.text,
+    //   })
 
-      await dingTalk.markdown(result)
+    //   // todo 添加查看更多
+    //   await dingTalk.markdown(result)
 
-      // await dingTalk.feedCard(result)
-    }
+    //   // await dingTalk.feedCard(result)
+    // }
   } catch (error) {
     // console.warn(error)
   }

@@ -31,7 +31,7 @@ async function githubList (data) {
         lang: 'javascript',
         limit: '30',
         offset: 0,
-        period: 'day',
+        period: 'month',
         ...data,
       }
     )

@@ -162,12 +162,6 @@ const getFedNews = async ({ type = 'markdown', offset = 0, pageSize = 20 }) => {
   }
 }
 
-;(async () => {
-  // await text({
-  //   text: '测试封装函数',
-  // })
-})()
-
 module.exports = {
   getAccessToken,
   insertFedNews,
