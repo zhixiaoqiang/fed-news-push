@@ -28,7 +28,7 @@ async function githubTrendingList (data) {
       {
         category: 'trending',
         lang: 'javascript',
-        limit: '30',
+        limit: 30,
         offset: 0,
         period: 'week',
         ...data,
