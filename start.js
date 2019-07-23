@@ -1,4 +1,4 @@
-const { schedule } = require('./utils')
+const schedule = require('node-schedule')
 const Api = require('./api')
 const wxClounFun = require('./api/wxClounFun')
 const dingTalk = require('./api/dingTalk')
@@ -11,7 +11,7 @@ const launch = async () => {
   schedule.scheduleJob('0 0 6 * * *', async () => {
     // 每天六点开始爬取数据
     try {
-      const feedCardList = await Api.githubList()
+      const feedCardList = await Api.githubTrendingList()
       const res = await wxClounFun.insertFedNews(
         feedCardList.data || [],
         'github'
@@ -58,7 +58,7 @@ const launch = async () => {
 ;(async () => {
   // 每天六点开始爬取数据
   try {
-    const feedCardList = await Api.githubList()
+    const feedCardList = await Api.githubTrendingList()
     const res = await wxClounFun.insertFedNews(
       feedCardList.data || [],
       'github'

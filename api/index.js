@@ -1,6 +1,5 @@
 const { get, post } = require('../utils/request')
 const dayjs = require('dayjs')
-const schedule = require('node-schedule')
 /**
  * 是否假期
  * @param {*} date
@@ -22,7 +21,7 @@ async function isHoliday (date = new Date()) {
  * github trending list
  * @param {*} data
  */
-async function githubList (data) {
+async function githubTrendingList (data) {
   try {
     const result = await post(
       'https://extension-ms.juejin.im/resources/github',
@@ -31,7 +30,7 @@ async function githubList (data) {
         lang: 'javascript',
         limit: '30',
         offset: 0,
-        period: 'month',
+        period: 'week',
         ...data,
       }
     )
@@ -70,27 +69,7 @@ async function githubList (data) {
   }
 }
 
-// ;(async () => {
-//   try {
-//     const feedCardList = await githubList()
-//     const res = await post(
-//       'https://api.weixin.qq.com/tcb/invokecloudfunction?access_token=23_DFm0fJD_w2XkFczmrP_tRdMv0rWNWJ1OROlUGq4wHz9Y7us5BGHiZ3cjWOLsve2_O8s0kexhjCpePFPxRfX-sBFkxb7R7LhOZZFNMY06gqU7sFk1fvKN-z7p_ejf5I7-Uh4EhMOrh4FxAu3ZPZCeAAAISV&env=nazi-cloud-430a12&name=actical',
-//       {
-//         $url: 'insertFedNews',
-//         data: {
-//           list: feedCardList.data || [],
-//           site: 'github',
-//         },
-//       }
-//     )
-//     console.warn(res)
-//   } catch (error) {
-//     console.warn(error)
-//   }
-// })()
-
 module.exports = {
   isHoliday,
-  githubList,
-  schedule,
+  githubTrendingList,
 }

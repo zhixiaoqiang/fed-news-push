@@ -1,5 +1,3 @@
-const schedule = require('node-schedule')
-
 const formatQuery = (obj) => {
   const str = []
   for (const k in obj) {
@@ -15,7 +13,6 @@ const limitText = (text = '', limitCount = 120) => {
 }
 
 module.exports = {
-  schedule,
   formatQuery,
   limitText,
 }
