@@ -60,7 +60,7 @@ yarn add ctree-cli global
 
 ## 效果图
 
-#### 小程序 trending
+<!-- #### 小程序 trending
 
 ![trending](http://img3.dian.so/lhc/2019/07/23/374w_668h_DEAC21563854496.jpg)
 
@@ -70,4 +70,16 @@ yarn add ctree-cli global
 
 #### 钉钉
 
-![dingtalk](http://img3.dian.so/lhc/2019/07/23/355w_591h_772D31563854684.jpg)
+![dingtalk](http://img3.dian.so/lhc/2019/07/23/355w_591h_772D31563854684.jpg) -->
+
+#### 小程序 trending
+
+![trending](./public/imgs/trendingPage.jpg)
+
+#### [issues](https://github.com/zhixiaoqiang/fed-news-push/issues)
+
+![issues](./public/imgs/issuesPage.jpg)
+
+#### 钉钉
+
+![dingtalk](./public/imgs/trendingPage.jpg)
