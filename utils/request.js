@@ -5,7 +5,7 @@ const rp = require('request-promise')
  * @param {*} url
  * @param {*} body
  */
-async function post (url, body) {
+async function post (url, body, otherProps = {}) {
   try {
     const result = await rp({
       uri: url,
@@ -13,6 +13,7 @@ async function post (url, body) {
       headers: { 'Content-Type': 'application/json' },
       body,
       json: true,
+      ...otherProps,
     })
     return result
   } catch (error) {

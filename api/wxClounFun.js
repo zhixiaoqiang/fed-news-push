@@ -133,8 +133,8 @@ const getFedNews = async ({ type = 'markdown', offset = 0, pageSize = 20 }) => {
             description,
             messageURL,
             username,
-            starCount,
-            forkCount,
+            starCount = 0,
+            forkCount = 0,
           } = item
           return `### [${username}](https://github.com/${username})/[${title}](${messageURL})\n\n > ${limitText(description)} \n\n **star：${starCount} fork：${forkCount}**`
         })

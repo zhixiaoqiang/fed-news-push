@@ -69,7 +69,55 @@ async function githubTrendingList (data) {
   }
 }
 
+async function jueJinFedList (data) {
+  try {
+    const result = await post('https://extension-ms.juejin.im/resources/gold', {
+      category: 'frontend',
+      limit: 30,
+      offset: 0,
+      order: 'heat',
+      ...data,
+    })
+    const feedCardList = result.data.map((item) => {
+      const {
+        title,
+        url,
+        collectionCount,
+        date: { iso },
+        user: { username, avatar, url: userUrl },
+      } = item
+
+      if (collectionCount < 100) {
+        return null
+      }
+      return {
+        title,
+        messageURL: url,
+        picURL: avatar,
+        starCount: collectionCount,
+        username,
+        avatar,
+        userUrl,
+        lang: '前端',
+      }
+    })
+
+    console.warn(feedCardList.filter(item => item))
+
+    return {
+      success: true,
+      data: feedCardList.filter(item => item),
+    }
+  } catch (error) {
+    console.warn(error)
+    return {
+      success: false,
+    }
+  }
+}
+
 module.exports = {
   isHoliday,
   githubTrendingList,
+  jueJinFedList,
 }

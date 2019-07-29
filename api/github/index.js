@@ -37,18 +37,15 @@ async function createIssues (data) {
   }
 }
 
-async function listRepoEvents (data) {
+async function listForOrg (data = {}) {
   try {
     const result = await octokit.repos.listForOrg({
-      org: 'octokit',
+      org: 'zhixiaoqiang',
       type: 'public',
+      ...data,
     })
     console.warn(result)
-    // const result = await octokit.activity.listWatchersForRepo({
-    //   owner: 'zhixiaoqiang',
-    //   repo: 'fed-news-push',
-    // })
-    // return result
+    return result
   } catch (error) {
     console.warn(error)
   }
@@ -56,5 +53,5 @@ async function listRepoEvents (data) {
 
 module.exports = {
   createIssues,
-  listRepoEvents,
+  listForOrg,
 }
