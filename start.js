@@ -75,8 +75,11 @@ const launch = async () => {
     // await wxClounFun.insertFedNews(trendingList.data || [], 'github')
     // const juejinList = await Api.jueJinFedList({ limit: 100 })
     // await wxClounFun.insertFedNews(juejinList.data || [], 'junjin')
-    // await getJunJinList()
+
     // console.warn('数据插入成功')
+
+    // await getJunJinList()
+
     const isHoliday = await Api.isHoliday()
     if (!isHoliday) {
       const result = await wxClounFun.getFedNews({

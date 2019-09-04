@@ -82,4 +82,4 @@ yarn add ctree-cli global
 
 #### 钉钉
 
-![dingtalk](./public/imgs/trendingPage.jpg)
+![dingtalk](./public/imgs/dingtalkPage.jpg)
